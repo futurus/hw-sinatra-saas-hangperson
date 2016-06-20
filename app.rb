@@ -76,7 +76,7 @@ class HangpersonApp < Sinatra::Base
     if flash[:win] == "Congratz"
       erb :win # You may change/remove this line
     else
-      "<!DOCTYPE html><html><head></head><body><h1>No cheating!!!</h1></body></html>"
+      redirect '/show'
     end
   end
   
@@ -84,7 +84,7 @@ class HangpersonApp < Sinatra::Base
     if flash[:lose] == "Sorry"
       erb :lose # You may change/remove this line
     else
-      "<!DOCTYPE html><html><head></head><body><h1>No cheating!!!</h1></body></html>"
+      redirect '/show'
     end
   end
 
