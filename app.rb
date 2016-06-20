@@ -64,9 +64,27 @@ class HangpersonApp < Sinatra::Base
     if @game.check_win_or_lose == :play
       erb :show # You may change/remove this line
     elsif @game.check_win_or_lose == :win
+      flash[:win] = "Congratz"
+      redirect '/win'
+    else
+      flash[:lose] = "Sorry"
+      redirect '/lose'
+    end
+  end
+
+  get '/win' do
+    if flash[:win] == "Congratz"
       erb :win # You may change/remove this line
     else
+      "<!DOCTYPE html><html><head></head><body><h1>No cheating!!!</h1></body></html>"
+    end
+  end
+  
+  get '/lose' do
+    if flash[:lose] == "Sorry"
       erb :lose # You may change/remove this line
+    else
+      "<!DOCTYPE html><html><head></head><body><h1>No cheating!!!</h1></body></html>"
     end
   end
 
