@@ -45,11 +45,11 @@ class HangpersonApp < Sinatra::Base
     
     if !status
       flash[:message] = "You have already used that letter."
-    elsif status
-      redirect '/show'
     else
       flash[:message] = "Invalid guess."
     end
+    
+    redirect '/show'
   end
   
   # Everytime a guess is made, we should eventually end up at this route.
@@ -59,7 +59,14 @@ class HangpersonApp < Sinatra::Base
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
     ### YOUR CODE HERE ###
-    erb :show # You may change/remove this line
+    
+    if @game.check_win_or_lose == :play
+      erb :show # You may change/remove this line
+    elsif @game.check_win_or_lose == :win
+      redirect '/win'
+    else
+      redirect '/lose'
+    end
   end
   
   get '/win' do
